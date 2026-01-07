@@ -34,3 +34,16 @@ create_tables.sql
 import_vehicle_csv.sql
 tests.sql (optionnel)
 queries.sql
+
+## Import des données – vehicule_brut
+
+La table `vehicule_brut` est une table intermédiaire utilisée pour importer les données depuis un fichier CSV.
+Elle permet de stocker les informations brutes avant leur transformation et insertion dans les tables normalisées
+(`station` et `vehicule`).
+
+Cette approche respecte les bonnes pratiques en base de données :
+- séparation des données brutes et des données métiers
+- nettoyage et contrôle avant intégration
+- meilleure traçabilité des imports
+
+Une fois les données validées, elles peuvent être insérées dans les tables finales via des requêtes SQL adaptées.

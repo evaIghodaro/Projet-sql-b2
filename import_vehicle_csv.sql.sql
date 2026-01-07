@@ -1,23 +1,16 @@
+-- Import des données CSV dans la table brute
 
--- IMPORT CSV
+COPY vehicule_brut(type_vehicule, modele, autonomie_km, station_nom, station_adresse)
+FROM '/chemin/vers/vehicules.csv'
+DELIMITER ','
+CSV HEADER;
 
-\copy vehicule_brut FROM 'C:/Ccsv/vehicules_cIara_2025.csv' CSV HEADER;
-
-
--- STATIONS
-
+-- Insertion des stations à partir des données importées
 INSERT INTO station (nom_station, adresse, capacite)
-SELECT DISTINCT
-    station_nom,
-    station_adresse,
-    50
-FROM vehicule_brut
-WHERE station_nom IS NOT NULL
-ON CONFLICT (nom_station) DO NOTHING;
+SELECT DISTINCT station_nom, station_adresse, 10
+FROM vehicule_brut;
 
-
--- VEHICULES
-
+-- Insertion des véhicules à partir de la table brute
 INSERT INTO vehicule (type_vehicule, modele, statut, autonomie_km, id_station)
 SELECT
     vb.type_vehicule,
