@@ -1,10 +1,8 @@
--- ============================================================
--- CIARA MOBILITY - Création de la base PostgreSQL
--- ============================================================
 
--- ========================
+-- CIARA MOBILITY - Création de la base PostgreSQ
+
 -- RESET
--- ========================
+
 DROP TABLE IF EXISTS paiement CASCADE;
 DROP TABLE IF EXISTS location CASCADE;
 DROP TABLE IF EXISTS maintenance CASCADE;
@@ -13,9 +11,8 @@ DROP TABLE IF EXISTS station CASCADE;
 DROP TABLE IF EXISTS client CASCADE;
 DROP TABLE IF EXISTS vehicule_brut CASCADE;
 
--- ========================
 -- TABLE BRUTE (IMPORT CSV)
--- ========================
+
 CREATE TABLE vehicule_brut (
     type_vehicule VARCHAR(50),
     modele VARCHAR(100),
@@ -36,9 +33,9 @@ CREATE TABLE client (
     date_inscription DATE DEFAULT CURRENT_DATE
 );
 
--- ========================
+
 -- STATION
--- ========================
+
 CREATE TABLE station (
     id_station SERIAL PRIMARY KEY,
     nom_station VARCHAR(100) UNIQUE NOT NULL,
@@ -46,9 +43,9 @@ CREATE TABLE station (
     capacite INT NOT NULL CHECK (capacite >= 0)
 );
 
--- ========================
+
 -- VEHICULE
--- ========================
+
 CREATE TABLE vehicule (
     id_vehicule SERIAL PRIMARY KEY,
     type_vehicule VARCHAR(30) NOT NULL,
@@ -59,9 +56,9 @@ CREATE TABLE vehicule (
     id_station INT NOT NULL REFERENCES station(id_station)
 );
 
--- ========================
+
 -- LOCATION
--- ========================
+
 CREATE TABLE location (
     id_location SERIAL PRIMARY KEY,
     date_debut TIMESTAMP NOT NULL,
@@ -71,9 +68,9 @@ CREATE TABLE location (
     id_vehicule INT NOT NULL REFERENCES vehicule(id_vehicule)
 );
 
--- ========================
+
 -- PAIEMENT
--- ========================
+
 CREATE TABLE paiement (
     id_paiement SERIAL PRIMARY KEY,
     date_paiement TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -105,9 +102,9 @@ FROM vehicule v
 JOIN station s ON s.id_station = v.id_station
 WHERE v.statut = 'disponible';
 
--- ========================
+
 -- FONCTION
--- ========================
+
 CREATE OR REPLACE FUNCTION calcul_prix(duree INT, tarif NUMERIC)
 RETURNS NUMERIC AS $$
 BEGIN
@@ -115,9 +112,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- ========================
 -- TRIGGER
--- ========================
+
 CREATE OR REPLACE FUNCTION maj_statut_location()
 RETURNS TRIGGER AS $$
 BEGIN
