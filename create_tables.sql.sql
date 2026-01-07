@@ -79,9 +79,8 @@ CREATE TABLE paiement (
     id_location INT REFERENCES location(id_location)
 );
 
--- ========================
 -- MAINTENANCE
--- ========================
+
 CREATE TABLE maintenance (
     id_maintenance SERIAL PRIMARY KEY,
     date_maintenance DATE DEFAULT CURRENT_DATE,
