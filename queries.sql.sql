@@ -1,8 +1,5 @@
--- ============================================================
 -- CIARA MOBILITY - Requêtes SQL
 -- Objectif : analyse et exploitation des données
--- ============================================================
-
 -- 1. Nombre de véhicules par station
 SELECT
     s.nom_station,

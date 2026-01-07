@@ -1,6 +1,5 @@
--- ========================
+
 -- DONNÉES DE TEST
--- ========================
 
 INSERT INTO station (nom_station, adresse, capacite)
 VALUES ('Test Station', '123 rue du test', 10);
@@ -49,9 +48,8 @@ SELECT 'voiture', 'TestCar', 'disponible', 250, id_station
 FROM station
 WHERE nom_station = 'Test Station';
 
--- ========================
 -- TEST DU TRIGGER
--- ========================
+
 INSERT INTO location (date_debut, id_client, id_vehicule)
 VALUES (NOW(), 1, 1);
 
